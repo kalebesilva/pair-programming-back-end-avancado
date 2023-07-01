@@ -1,0 +1,38 @@
+
+body{
+    font-family: 'Fira Code';
+    background-color: #AFEEEE;
+    color: #000000;
+}
+
+.input-form  {
+    display: flex;
+    /* size: 2em; */
+    margin: 0 auto;
+    justify-content: center;
+    
+  }
+.title-list{
+    display: flex;
+    justify-content: center;
+    font-family: 'Fira Code';
+}
+
+.lista{
+    list-style-type: none;
+    display: flex;
+    /* size: 2em; */
+    justify-content:center;
+    margin: 2%;   
+}
+
+input[type="text"] {
+    height: 30px;
+    width: 400px;
+}
+
+input::placeholder {
+    font-family: 'Fira Code';
+    font-size: medium;
+}
+  
