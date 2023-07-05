@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon-start": "cd ./project-favorites/src && nodemon server.js",
-    "ts-watch": "cd ./project-favorites/public/js &&  ts-watch script.ts"
+    "ts-watch": "cd ./project-favorites/public/js &&  ts-watch script.ts",
+    "api": "cd ./project-favorites/api && nodemon api/index.js"
   },
   "keywords": [],
   "author": "",
