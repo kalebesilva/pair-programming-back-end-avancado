@@ -1,6 +1,6 @@
 let ul: Element | null = document.querySelector(".lista");
 let form: HTMLFormElement | null = document.querySelector(".form");
-let li: HTMLElement = document.createElement("li");
+let li: Element = document.createElement("li");
 
 interface myObjForAddInList {
   name: string,
