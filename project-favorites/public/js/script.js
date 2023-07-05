@@ -1,7 +1,6 @@
 var ul = document.querySelector(".lista");
 var form = document.querySelector(".form");
 var li = document.createElement("li");
-var input = document.querySelector("input").value;
 if (form) {
     form.addEventListener("submit", function (event) {
         event.preventDefault;
