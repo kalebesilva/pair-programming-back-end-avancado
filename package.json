@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "nodemon-start": "cd ./project-favorites/src && nodemon server.js",
-    "ts-watch": "cd ./project-favorites/public/js &&  ts-watch script.ts",
-    "api": "cd ./project-favorites/api && nodemon api/index.js"
+    "ts-watch": "cd ./project-favorites/frontend/public/js &&  ts-watch script.ts",
+    "api": "cd ./project-favorites/backend/api && nodemon app.ts",
+    "ts-watch-backend": "cd ./project-favorites/backend/api &&  ts-watch app.ts",
+    "tsc-init": "tsc --init"
   },
   "keywords": [],
   "author": "",
@@ -15,12 +16,14 @@
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/nodemon": "^1.19.2",
+    "@types/typescript": "^2.0.0",
     "nodemon": "^2.0.22",
     "ts-watch": "^1.0.8",
     "typescript": "^5.1.6"
   },
   "dependencies": {
     "express": "^4.18.2",
+    "ts-node": "^10.9.1",
     "tslib": "^2.6.0"
   }
 }
