@@ -1,1 +1,35 @@
+# Ignore build output directories
+dist/
+build/
+
+# Ignore log files
+*.log
+
+# Ignore dependency directories
 node_modules/
+bower_components/
+
+# Ignore environment variable files
+.env
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore the node_modules directory
+node_modules/
+
+# Ignore build output directories
+dist/
+build/
+
+# Ignore log files
+*.log
+
+# Ignore TypeScript declaration files
+*.d.ts
+
+# Ignore environment variable files
+.env
