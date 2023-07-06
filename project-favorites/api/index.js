@@ -2,17 +2,42 @@ const http = require('http');
 const URL = require("url")
 const fs = require('fs');
 const path = require("path");
-const data = require( "./url.json");
+const data = require("./urls.json");
 
- http.createServer((req, res)=>{
+http.createServer((req, res) => {
 
-     
-     const {name, url, del} = URL.parse(req.url, true).query;
-     
-     if(!name || !url){
+    res.writeHead(200, {
+        'Access-Control-Allow-Headers': '*'
+    })
+
+    if (req.method === 'POST') {
+        let Mybody = '';
+        req.on('data', chunk => {
+            Mybody += chunk.toString();
+        });
+
+        req.on('end', () => {
+            const data = JSON.parse(Mybody);
+            
+            fs.writeFile(
+                path.join(__dirname, 'urls.json'),
+                JSON.stringify(data, null, 2),
+                err => {
+                    if (err) throw err
+                    res.end('Operação realizada com sucesso! ' + JSON.stringify(data))
+                }
+            )
+        });
+
+
+    }
+
+    const { name, url, del } = URL.parse(req.url, true).query;
+
+    if (!name || !url) {
         return res.end(JSON.stringify(data));
     }
-    if(del){
+    if (del) {
         data.urls = data.urls.filter(item => item.url != url);
         return res.end('Apagado ' + data.urls)
     }
@@ -21,15 +46,15 @@ const data = require( "./url.json");
         path.join(__dirname, 'urls.json'),
         JSON.stringify(data, null, 2),
         err => {
-            if(err) throw err
+            if (err) throw err
             res.end('Operação realizada com sucesso! ' + JSON.stringify(data))
         }
     )
-   
- }).listen(5000, ()=> {
-     console.log("Api rodando ");
-    
- });
+
+}).listen(5000, () => {
+    console.log("Api rodando ");
+
+});
 
 
 

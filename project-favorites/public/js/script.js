@@ -9,14 +9,23 @@ if (form) {
             var data = myformOBJ.get("input");
             var _a = data.split(","), name_1 = _a[0], url = _a[1];
             var obj = returnObj(name_1, url);
-            li.textContent = "".concat(obj.name, " ").concat(obj.url);
-            ul === null || ul === void 0 ? void 0 : ul.appendChild(li);
+            fetch('http://localhost:5000', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(obj)
+            })
+                .then(function (response) { return response.json(); })
+                .then(function (data) { return console.log(data); })
+                .catch(function (error) { return console.error(error); });
         }
     });
 }
 function returnObj(name, url) {
     return {
         name: name,
-        url: url
+        url: url,
     };
 }
