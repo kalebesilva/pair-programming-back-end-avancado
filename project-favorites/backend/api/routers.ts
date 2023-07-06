@@ -12,14 +12,15 @@ myRouters.get("/", (req: Request, res: Response) => {
   res.send(JSON.stringify(myJsonData));
 });
 
-myRouters.get("/delete/:id", (req: Request, res: Response) => {
+myRouters.delete("/:id", (req: Request, res: Response) => {
   let id = parseFloat(req.params.id);
-  
-  if(deleteOperation.delete(id)){
-        res.send(`(${id} apagado com sucesso ) \n \n ${JSON.stringify(myJsonData)}`);
-  }else{
-    res.send("Erro ao realizar a remocao do registro");
-  }
+  const resultStatus = deleteOperation.delete(id);
+  console.log(resultStatus);
+  if(resultStatus == true)
+    res.status(200).send(`${id} foi apagada com sucesso`);
+  else 
+    res.status(500).send(`Erro interno`); 
+
   
 });
 
