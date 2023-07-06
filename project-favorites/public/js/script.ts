@@ -16,7 +16,8 @@ if (form) {
       let data: string | null = myformOBJ.get("input") as string;
       let [name, url]: string[] = data.split(",");
       let obj: myObjForAddInList | null = returnObj(name, url);
-      fetch('http://localhost:5000', {
+
+      fetch('http://localhost:5001', {
         method: 'POST',
         mode: "no-cors",
         headers: {
@@ -24,12 +25,21 @@ if (form) {
         },
         body: JSON.stringify(obj)
       })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error(error))
-
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error))
     }
   });
+
+  fetch('http://localhost:5001', {
+    method: 'GET',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((data)=>{
+    console.log(data.json());
+  })
 }
 
 function returnObj(name: string, url: string): myObjForAddInList {

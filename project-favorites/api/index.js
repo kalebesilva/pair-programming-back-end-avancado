@@ -11,20 +11,24 @@ http.createServer((req, res) => {
     })
 
     if (req.method === 'POST') {
+
         let Mybody = '';
         req.on('data', chunk => {
             Mybody += chunk.toString();
         });
 
         req.on('end', () => {
-            const data = JSON.parse(Mybody);
+            let arrayJson = new Array();
+            arrayJson.push(JSON.parse(Mybody));
+            arrayJson.push(data);
+            
             
             fs.writeFile(
                 path.join(__dirname, 'urls.json'),
-                JSON.stringify(data, null, 2),
+                JSON.stringify(arrayJson, null, 2),
                 err => {
                     if (err) throw err
-                    res.end('Operação realizada com sucesso! ' + JSON.stringify(data))
+                    res.end('Operação realizada com sucesso! ' + JSON.stringify(newData))
                 }
             )
         });

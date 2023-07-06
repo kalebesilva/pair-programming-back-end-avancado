@@ -19,8 +19,17 @@ if (form) {
             })
                 .then(function (response) { return response.json(); })
                 .then(function (data) { return console.log(data); })
-                .catch(function (error) { return console.error(error); });
+                .catch(function (error) { return console.error(error) });
         }
+    });
+    fetch('http://localhost:5001', {
+        method: 'GET',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function (data) {
+        console.log(data.json());
     });
 }
 function returnObj(name, url) {
