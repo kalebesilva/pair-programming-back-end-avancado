@@ -11,7 +11,7 @@ if (form) {
             var obj = returnObj(name_1, url);
             fetch('http://localhost:5000', {
                 method: 'POST',
-                mode: 'no-cors',
+                mode: "no-cors",
                 headers: {
                     'Content-Type': 'application/json'
                 },

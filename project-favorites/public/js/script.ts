@@ -18,6 +18,7 @@ if (form) {
       let obj: myObjForAddInList | null = returnObj(name, url);
       fetch('http://localhost:5000', {
         method: 'POST',
+        mode: "no-cors",
         headers: {
           'Content-Type': 'application/json'
         },
