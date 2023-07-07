@@ -1,10 +1,10 @@
-import * as path from "path";
-import deleteOperation from "./crud-operations/delete";
-import FileSystem from "fs";
-import insertOperation from "./crud-operations/insert";
-import myJsonData from "./urls.json";
-import Router, { Request, Response } from "express";
-import updateOperation from "./crud-operations/update";
+import deleteOperation from './crud-operations/delete';
+import insertOperation from './crud-operations/insert';
+import myJsonData from './urls.json';
+import Router, { Request, Response } from 'express';
+import updateOperation from './crud-operations/update';
+import cors from 'cors';
+
 
 const myRouters = Router();
 
@@ -20,7 +20,7 @@ myRouters.delete("/:id", (req: Request, res: Response) => {
   else res.status(500).send(res.json({mensage: "Erro ao deletar obj"}));
 });
 
-myRouters.post("/", (req: Request, res: Response) => {
+myRouters.post("/", (req: Request, res: Response, next) => {
 
   const {id, name, url} = req.body;
   console.log(id)

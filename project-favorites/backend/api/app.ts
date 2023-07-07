@@ -13,5 +13,5 @@ app.use(express.json());
 app.use(myRouters);
 
 app.listen(3000, () => {
-  console.log("API Running");
+  console.log("Backend API Running");
 });
