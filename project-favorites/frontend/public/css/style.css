@@ -1,6 +1,7 @@
 
 body{
-    font-family: 'Fira Code';
+    
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
     background-color: #AFEEEE;
     color: #000000;
 }
@@ -15,7 +16,7 @@ body{
 .title-list{
     display: flex;
     justify-content: center;
-    font-family: 'Fira Code';
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
 }
 
 .lista{
