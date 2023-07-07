@@ -1,6 +1,6 @@
-import FileSystem from "fs";
-import path from "path";
-import UrlItem from "../class/UrlItem";
+import FileSystem from 'fs';
+import path from 'path';
+import UrlItem from '../class/UrlItem';
 
 const jsonFilePath = path.join(__dirname, "..", "urls.json");
 const fileContents = FileSystem.readFileSync(jsonFilePath, "utf8");
@@ -8,6 +8,7 @@ const myJsonData = JSON.parse(fileContents);
 let savedElements = new Array();
 
 function insert(data: UrlItem) {
+  if(data === null || data === undefined) return false;
   let working = true;
   try {
     FileSystem.writeFile(jsonFilePath, getAddRegister(data), (err) => {
