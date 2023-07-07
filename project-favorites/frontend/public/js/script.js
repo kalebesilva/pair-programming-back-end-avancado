@@ -1,40 +1,65 @@
-var ul = document.querySelector(".lista");
-var form = document.querySelector(".form");
-var li = document.createElement("li");
-if (form) {
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        if (form != null || form != undefined) {
-            var myformOBJ = new FormData(form);
-            var data = myformOBJ.get("input");
-            var _a = data.split(","), name_1 = _a[0], url = _a[1];
-            var obj = returnObj(name_1, url);
-            fetch('http://localhost:5001', {
-                method: 'POST',
-                mode: "no-cors",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(obj)
-            })
-                .then(function (response) { return response.json(); })
-                .then(function (data) { return console.log(data); })
-                .catch(function (error) { return console.error(error); });
-        }
-    });
-    fetch('http://localhost:5001', {
-        method: 'GET',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(function (data) {
-        console.log(data.json());
-    });
+
+let ul = document.querySelector(".lista");
+let form = document.querySelector(".form");
+let li = document.createElement("li");
+
+let urlApi = 'http://localhost:3000';
+
+async function getLogGetAll(){
+   const data = await getUrlItemData(urlApi);
+   window.alert(JSON.stringify(data));
 }
-function returnObj(name, url) {
-    return {
-        name: name,
-        url: url,
-    };
+
+
+
+
+async function getUrlItemData(url) {
+  const response = await fetch(url, { method: 'GET'});
+  const data = await response.json();
+  return data;
+}
+
+async function insertNewUrlItem(url, obj) {
+  const jsonObj = JSON.parse(obj);
+  console.log(jsonObj);
+  const response = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(jsonObj)
+  });
+  const data = await response.json();
+  return data;
+}
+
+
+if (form) {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (form != null || form != undefined) {
+      let myformOBJ = new FormData(form);
+      let data = myformOBJ.get("input");
+      if(insertNewUrlItem(urlApi,returnJsonFileByForm(data))){
+        getLogGetAll()
+      }
+    }
+  });
+}
+
+function returnJsonFileByForm(data) {
+  if(data === null || data === undefined){
+    console.log("data Vazia")
+    return {id: 1,name:"Erro",url:"htttp://Erro.com"}
+  }
+  const [id, name, url] = data.split(',');
+  console.log(JSON.stringify({
+    id: +id,
+    name: name,
+    url: url
+  }))
+  return JSON.stringify({
+    id: +id,
+    name: name,
+    url: url
+  })
+  
 }
