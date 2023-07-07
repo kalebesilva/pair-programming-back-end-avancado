@@ -1,18 +1,17 @@
-import  FileSystem  from 'fs';
-import  path  from 'path';
-import UrlItem from '../class/UrlItem';
+import FileSystem from "fs";
+import path from "path";
+import UrlItem from "../class/UrlItem";
 
 const jsonFilePath = path.join(__dirname, "..", "urls.json");
 const fileContents = FileSystem.readFileSync(jsonFilePath, "utf8");
 const myJsonData = JSON.parse(fileContents);
 let savedElements = new Array();
 
-function update(id: number,data: UrlItem ){
+function update(id: number, data: UrlItem) {
+  let working = true;
 
-    let working = true;
-  console.log(jsonFilePath);
   try {
-    FileSystem.writeFile(jsonFilePath, getUpdatedRegisters(id,data), (err) => {
+    FileSystem.writeFile(jsonFilePath, getUpdatedRegisters(id, data), (err) => {
       if (err) {
         throw new Error("err: " + err);
       }
@@ -24,22 +23,18 @@ function update(id: number,data: UrlItem ){
   }
 }
 
-function getUpdatedRegisters(id:number, myData: UrlItem): string {
-    
-    myJsonData.forEach((element: UrlItem) => {
-            savedElements.push(element);
-    });
-    savedElements.some((data)=>{
-        if(data.id === id){
-            data.name = myData.name;
-            data.url = myData.url
-        }
-    })
-  
-    console.log(savedElements);
-    return JSON.stringify(savedElements, null, 2);
-  }
+function getUpdatedRegisters(id: number, myData: UrlItem): string {
+  myJsonData.forEach((element: UrlItem) => {
+    if (element.id === id) {
+      element.name = myData.name;
+      element.url = myData.url;
+    }
+
+    savedElements.push(element);
+  });
+  return JSON.stringify(savedElements, null, 2);
+}
 
 export default {
-    update: update
-}
+  update: update,
+};
