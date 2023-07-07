@@ -5,7 +5,6 @@ import UrlItem from "../class/UrlItem";
 const jsonFilePath = path.join(__dirname, "..", "urls.json");
 const fileContents = FileSystem.readFileSync(jsonFilePath, "utf8");
 const myJsonData = JSON.parse(fileContents);
-let newFileContents: string;
 let savedElements = new Array();
 
 function deleteById(id: number): boolean {
