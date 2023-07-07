@@ -3,7 +3,7 @@ import myJsonData from "./urls.json";
 import FileSystem from "fs";
 import * as path from "path";
 import deleteOperation from "./crud-operations/delete";
-
+import insertOperation from "./crud-operations/insert";
 
 const myRouters = Router();
 
@@ -23,5 +23,14 @@ myRouters.delete("/:id", (req: Request, res: Response) => {
 
   
 });
+
+myRouters.post("/", (req: Request, res: Response)=>{
+  const resultStatus = insertOperation.insert(req.body);
+  console.log(resultStatus);
+  if(resultStatus == true)
+    res.status(200).send(`${JSON.stringify(req.body)} foi adicionada com sucesso`);
+  else 
+    res.status(500).send(`Erro interno ao adicionar registro`); 
+})
 
 export default myRouters;
