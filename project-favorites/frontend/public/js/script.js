@@ -1,17 +1,26 @@
 
 let ul = document.querySelector(".lista");
 let form = document.querySelector(".form");
-let li = document.createElement("li");
-
-let urlApi = 'http://localhost:3000';
+let br = document.createElement("br")
+let urlApi = 'http://localhost:3000/';
 
 async function getLogGetAll(){
    const data = await getUrlItemData(urlApi);
-   window.alert(JSON.stringify(data));
+   return data;
 }
 
+async function write(){
+  const arrayObj = await getLogGetAll();
+  arrayObj.forEach(element => {
+    let li = document.createElement("li");
+    li.innerText = `name: ${element.name}, url:${element.url}`;
+    
+    ul.appendChild(li);
+  });
+  document.body.append(ul);
+}
 
-
+write();
 
 async function getUrlItemData(url) {
   const response = await fetch(url, { method: 'GET'});
@@ -20,11 +29,9 @@ async function getUrlItemData(url) {
 }
 
 async function insertNewUrlItem(url, obj) {
-  const jsonObj = JSON.parse(obj);
-  console.log(jsonObj);
   const response = await fetch(url, {
     method: 'POST',
-    body: JSON.stringify(jsonObj)
+    body: JSON.stringify(obj)
   });
   const data = await response.json();
   return data;
