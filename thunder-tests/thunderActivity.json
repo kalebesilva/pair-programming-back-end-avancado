@@ -60,13 +60,18 @@
         "colId": "history",
         "containerId": "",
         "name": "http://localhost:5003/4",
-        "url": "http://localhost:5003/4",
-        "method": "DELETE",
+        "url": "http://localhost:3000",
+        "method": "POST",
         "sortNum": 0,
         "created": "2023-07-06T20:49:23.494Z",
-        "modified": "2023-07-06T20:49:23.494Z",
+        "modified": "2023-07-08T00:54:25.404Z",
         "headers": [],
         "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"id\": 15,\n  \"name\": \"vitor\",\n  \"url\": \"hhhttt://\"\n}",
+            "form": []
+        },
         "tests": []
     }
 ]

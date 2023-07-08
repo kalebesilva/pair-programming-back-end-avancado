@@ -9,7 +9,6 @@ let savedElements = new Array();
 
 function insert(data: UrlItem) {
   if(data === null || data === undefined) return false;
-  let working = true;
   try {
     FileSystem.writeFile(jsonFilePath, getAddRegister(data), (err) => {
       if (err) {
@@ -17,7 +16,7 @@ function insert(data: UrlItem) {
       }
     });
 
-    return working;
+    return true;
   } catch (err) {
     throw err;
   }
