@@ -29,7 +29,7 @@ async function write(){
     let buttonRemove = document.createElement("button");
     li.innerText = `name: ${element.name}, url:${element.url}`;
     buttonRemove.innerText = "X";
-    ul.appendChild(buttonRemove);
+    li.appendChild(buttonRemove);
     ul.appendChild(li);
     
   });
