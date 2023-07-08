@@ -26,9 +26,12 @@ async function write(){
   const arrayObj = await getLogGetAll();
   arrayObj.forEach(element => {
     let li = document.createElement("li");
+    let buttonRemove = document.createElement("button");
     li.innerText = `name: ${element.name}, url:${element.url}`;
-    
+    buttonRemove.innerText = "X";
+    ul.appendChild(buttonRemove);
     ul.appendChild(li);
+    
   });
   document.body.append(ul);
 }
@@ -41,7 +44,7 @@ async function getUrlItemData(url) {
   return data;
 }
 
-// Example POST method implementation:
+// Deus abencoe a mdn docs
 async function postData(url, data) {
   // Default options are marked with *
   const response = await fetch(url, {
