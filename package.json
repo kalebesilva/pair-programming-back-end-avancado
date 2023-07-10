@@ -8,7 +8,8 @@
     "ts-watch": "cd ./project-favorites/frontend/public/js &&  ts-watch script.ts",
     "api": "cd ./project-favorites/backend/api && nodemon app.ts",
     "ts-watch-backend": "cd ./project-favorites/backend/api &&  ts-watch app.ts",
-    "tsc-init": "tsc --init"
+    "tsc-init": "tsc --init",
+    "nosql-api": "cd ./project-favorites/NOSQL-version/backend/server/ && nodemon app.ts"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +27,10 @@
   "dependencies": {
     "bootstrap": "^5.3.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.3.2",
     "ts-node": "^10.9.1",
     "tslib": "^2.6.0"
   }
