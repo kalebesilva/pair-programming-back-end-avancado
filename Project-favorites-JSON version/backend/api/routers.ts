@@ -3,8 +3,6 @@ import insertOperation from './crud-operations/insert';
 import myJsonData from './urls.json';
 import Router, { Request, Response } from 'express';
 import updateOperation from './crud-operations/update';
-import cors from 'cors';
-
 
 const myRouters = Router();
 
@@ -13,7 +11,7 @@ myRouters.get("/", (req: Request, res: Response) => {
 });
 
 myRouters.delete("/:id", (req: Request, res: Response) => {
-  let id = parseInt(req.params.id);
+  let id = parseInt(req.params['id']);
   const resultStatus = deleteOperation.delete(id);
   if (resultStatus == true)
     res.status(200).send(res.json({mensage: `${id} foi apagada com sucesso`}));
@@ -39,7 +37,7 @@ myRouters.post("/", (req: Request, res: Response, next) => {
 });
 
 myRouters.put("/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params['id']);
   const {name, url} = req.body;
   const myReqData = {
     id: id,

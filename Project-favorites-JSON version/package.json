@@ -1,14 +1,12 @@
 {
-  "name": "favorites-project-json-edition",
+  "name": "project-favorites-json-version",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "ts-watch": "cd ./project-favorites/frontend/public/js &&  ts-watch script.ts",
-    "api": "cd ./project-favorites/backend/api && nodemon app.ts",
-    "ts-watch-backend": "cd ./project-favorites/backend/api &&  ts-watch app.ts",
-    "tsc-init": "tsc --init"
+    "api": "cd ./backend/api && nodemon app.ts"
+   
   },
   "keywords": [],
   "author": "",
