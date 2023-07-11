@@ -1,21 +1,19 @@
-import express from 'express';
-import * as dotenv from 'dotenv';
-import myRoutes from '../routes/routers';
-import mongoose from 'mongoose';
-import { MongoClient, ServerApi} from 'mongodb';
-
+import express from "express";
+import { connectToDatabase } from "../services/database.service"
+import  favoritesRouter  from "../routes/favorite.router";
 
 const app = express();
-dotenv.config();
-const databaseConnector = process.env.CONNECTOR;
-console.log(databaseConnector);
+const port = 3000;
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(myRoutes);
+connectToDatabase()
+    .then(() => {
+        app.use("/favorite", favoritesRouter);
 
-mongoose.connect(`${databaseConnector}`).then()
-
-app.listen(3000, ()=>{
-    console.log("Backend-NOSQL running!");
-})
+        app.listen(port, () => {
+            console.log(`Server started at http://localhost:${port}`);
+        });
+    })
+    .catch((error: Error) => {
+        console.error("Database connection failed", error);
+        process.exit();
+    });
