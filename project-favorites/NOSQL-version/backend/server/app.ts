@@ -1,7 +1,9 @@
 import express from "express";
 import { connectToDatabase } from "../services/database.service"
 import  favoritesRouter  from "../routes/favorite.router";
+import * as dotenv from 'dotenv';
 
+dotenv.config()
 const app = express();
 const port = 3000;
 

@@ -9,11 +9,19 @@ favoritesRouter.use(express.json())
 
 favoritesRouter.get("/", async (req: Request, res: Response)=>{
     try {
-        const favorites = (await collections.favorites.find({}).toArray()) as Favorite[];
+        const favorites = async ()=>{
+           let f = await collections.favorite?.find({}).toArray();
+           if(f){
+            return f;
+           }else{
+            return "Erro"
+           }
+           
+        };
         res.status(200).send(favorites);
-    } catch (error) {
+    } catch {
 
-        res.send(500).send(error.message);
+        res.send(500).send("Erro");
         
     }
 })
