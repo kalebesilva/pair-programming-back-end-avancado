@@ -1,5 +1,5 @@
 {
-  "name": "peer-programming-back-end-avancado",
+  "name": "favorites-project-json-edition",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,8 +8,7 @@
     "ts-watch": "cd ./project-favorites/frontend/public/js &&  ts-watch script.ts",
     "api": "cd ./project-favorites/backend/api && nodemon app.ts",
     "ts-watch-backend": "cd ./project-favorites/backend/api &&  ts-watch app.ts",
-    "tsc-init": "tsc --init",
-    "nosql-api": "cd ./project-favorites/NOSQL-version/backend/server/ && nodemon app.ts"
+    "tsc-init": "tsc --init"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +17,6 @@
     "@types/body-parser": "^1.19.2",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
-    "@types/node": "^20.4.1",
     "@types/nodemon": "^1.19.2",
     "@types/typescript": "^2.0.0",
     "nodemon": "^2.0.22",
@@ -26,12 +24,8 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "bootstrap": "^5.3.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mongodb": "^5.7.0",
-    "mongoose": "^7.3.2",
     "ts-node": "^10.9.1",
     "tslib": "^2.6.0"
   }

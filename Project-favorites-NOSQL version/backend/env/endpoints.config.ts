@@ -1,3 +1,8 @@
+
+import * as dotenv from "dotenv"
+
+dotenv.config();
+
 module.exports = {
     DB_CONN_STRING: process.env.DB_CONN_STRING ?? '',
     DB_NAME: process.env.DB_NAME ?? '',
