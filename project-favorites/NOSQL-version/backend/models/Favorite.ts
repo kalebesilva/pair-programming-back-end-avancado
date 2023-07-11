@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 
-export default class ItemUrl{
+export default class <Favorite></Favorite>{
 
     private name: string;
     private url: string;
@@ -34,7 +34,7 @@ export default class ItemUrl{
         return this.url;
     }
 
-    setAll(obj: ItemUrl){
+    setAll(obj: <Favorite></Favorite>){
         this.id = obj.id;
         this.name = obj.name;
         this.url = obj.url;
