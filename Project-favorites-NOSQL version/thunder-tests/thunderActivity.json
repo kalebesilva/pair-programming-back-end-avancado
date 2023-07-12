@@ -27,14 +27,9 @@
         "method": "GET",
         "sortNum": 0,
         "created": "2023-07-12T00:02:26.550Z",
-        "modified": "2023-07-12T01:11:10.109Z",
+        "modified": "2023-07-12T01:32:32.947Z",
         "headers": [],
         "params": [],
-        "body": {
-            "type": "json",
-            "raw": "{\n  \"name\": \"SimUpdate\",\n  \"url\": \"YES.com\"\n}",
-            "form": []
-        },
         "tests": []
     },
     {
