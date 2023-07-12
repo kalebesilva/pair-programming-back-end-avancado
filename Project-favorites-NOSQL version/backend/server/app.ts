@@ -3,8 +3,10 @@ import { connectToDatabase } from "../services/database.service"
 import  favoritesRouter  from "../routes/favorite.router";
 import {env} from "../env/env"
 import { loadEnv } from '../env/env';
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 
 loadEnv();
 
