@@ -10,7 +10,7 @@ loadEnv();
 
 connectToDatabase()
     .then(() => {
-        app.use("/favorite", favoritesRouter);
+        app.use(favoritesRouter);
 
         app.listen(env.PORT, () => {
             console.log(`Server started at http://localhost:${env.PORT}`);
