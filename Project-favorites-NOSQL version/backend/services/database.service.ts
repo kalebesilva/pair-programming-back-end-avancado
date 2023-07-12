@@ -1,27 +1,15 @@
 import * as mongoDB from "mongodb";
-import * as dotenv from "dotenv";
+import { env } from "../env/env";
 
 export const collections: { favorite?: mongoDB.Collection } = {};
 
 export async function connectToDatabase() {
-  dotenv.config();
-  const dbConnectionString = process.env["DB_CONN_STRING"];
-  const dbNameString = process.env["DB_NAME"];
-  if (dbConnectionString === undefined) {
-    throw new Error("DB_CONN_STRING environment variable is not defined");
-  }
-  if(dbNameString === undefined){
-    throw new Error("DB_NAME environment variable is not defined");
-  }
-  const client: mongoDB.MongoClient = new mongoDB.MongoClient(
-    dbConnectionString
-  );
-  const db: mongoDB.Db = client.db(process.env["DB_NAME"]);
+
+  const client: mongoDB.MongoClient = new mongoDB.MongoClient(env.DB_CONN_STRING);
+  const db: mongoDB.Db = client.db(env.DB_NAME);
 
 
-  const favoriteCollection: mongoDB.Collection = db.collection(
-    dbNameString
-  );
+  const favoriteCollection: mongoDB.Collection = db.collection(env.FAVORITE_COLLECTION_NAME);
 
   collections.favorite = favoriteCollection;
 

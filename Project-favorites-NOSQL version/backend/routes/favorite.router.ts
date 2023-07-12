@@ -4,6 +4,7 @@ import {collections} from '../services/database.service';
 import Favorite from '../models/Favorite';
 import express from "express";
 
+
 const favoritesRouter = Router();
 favoritesRouter.use(express.json())
 

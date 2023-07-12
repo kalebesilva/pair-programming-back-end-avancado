@@ -1,18 +1,19 @@
 import express from "express";
 import { connectToDatabase } from "../services/database.service"
 import  favoritesRouter  from "../routes/favorite.router";
-import * as dotenv from 'dotenv';
+import {env} from "../env/env"
+import { loadEnv } from '../env/env';
 
-dotenv.config()
 const app = express();
-const port = 3000;
+
+loadEnv();
 
 connectToDatabase()
     .then(() => {
         app.use("/favorite", favoritesRouter);
 
-        app.listen(port, () => {
-            console.log(`Server started at http://localhost:${port}`);
+        app.listen(env.PORT, () => {
+            console.log(`Server started at http://localhost:${env.PORT}`);
         });
     })
     .catch((error: Error) => {
