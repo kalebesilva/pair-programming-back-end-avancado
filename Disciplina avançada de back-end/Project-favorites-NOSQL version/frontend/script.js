@@ -1,5 +1,36 @@
 let form = document.querySelector(".form-class");
-cosnt url = "http://localhost:3000";
+let table = document.querySelector(".table-name-url");
+
+const url = "http://localhost:3000";
+
+
+    getAll().then(data =>console.log(data))
+
+
+
+async function writeElementInWindow(){
+    let tbody = document.createElement("tbody")
+    let arrayData = await getAll();
+    for(let i = 0; i < arrayData.length ; i++){
+
+        let tr = document.createElement("tr");
+        let tdName = document.createElement("td");
+        let tdUrl = document.createElement("td");
+        tdName.innerText = `${arrayData[i].name}`;
+        tdUrl.innerText = `${arrayData[i].url}`;
+        tr.appendChild(tdName);
+        tr.appendChild(tdUrl);
+        tbody.appendChild(tr);
+        
+    }
+    table.appendChild(tbody);
+    document.body.appendChild(table);
+
+   
+    
+}
+
+writeElementInWindow().catch(error =>console.log(error))
 
 if(form){
     form.addEventListener("submit", (event)=>{
@@ -19,7 +50,7 @@ function getFormInputData(form){
     return myformOBJ.get("input");
 }
 
-async function insertOnDatabase(urlApi, data){
+async function insertOnDatabase(data){
 
     // Default options are marked with *
     const response = await fetch(url, {
@@ -40,7 +71,7 @@ async function insertOnDatabase(urlApi, data){
 
 }
 
-async function getAll(url) {
+async function getAll() {
     const response = await fetch(url, { method: 'GET'});
     const data = await response.json();
     return data;
