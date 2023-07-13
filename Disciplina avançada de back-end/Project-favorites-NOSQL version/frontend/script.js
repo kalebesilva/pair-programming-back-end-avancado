@@ -1,5 +1,5 @@
 let form = document.querySelector(".form-class");
-
+cosnt url = "http://localhost:3000";
 
 if(form){
     form.addEventListener("submit", (event)=>{
@@ -19,7 +19,7 @@ function getFormInputData(form){
     return myformOBJ.get("input");
 }
 
-function insertOnDatabase(urlApi, data){
+async function insertOnDatabase(urlApi, data){
 
     // Default options are marked with *
     const response = await fetch(url, {
@@ -40,3 +40,8 @@ function insertOnDatabase(urlApi, data){
 
 }
 
+async function getAll(url) {
+    const response = await fetch(url, { method: 'GET'});
+    const data = await response.json();
+    return data;
+  }
