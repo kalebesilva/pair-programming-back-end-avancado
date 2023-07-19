@@ -39,7 +39,9 @@ li{
     list-style: none;
 }
 
-
+.my-list{
+    display: inline-block;
+}
 .search-bar{
     width: 100%;
 }
