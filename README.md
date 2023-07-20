@@ -1,4 +1,4 @@
-# pair-programming-back-end-avancado
+# pair programming web academy
 
 Repositório para guardar as atividades de pair programming feitas em sala de aula ao longo das disciplinas.
 
