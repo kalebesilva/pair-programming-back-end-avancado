@@ -2,15 +2,14 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
 }
 
 .general-grid {
     display: grid;
     grid-template-rows:0.5fr 0.5fr 3fr 1fr 0.5fr;
     height: 100vh;
-    padding: 10px;
-   
-   
 }
 
 nav{
@@ -20,15 +19,32 @@ nav{
 
 .logo{
     height: 50px;
-    margin-bottom: 5px;
-    
-    background-color: yellow;
-
-}
-nav .menu{
-   height: 50px;
+    background-color: #ccc;
     display: flex;
-    background-color: orange;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+}
+
+nav .menu{
+    height: 50px;
+    display: flex;
+    background-color: #ccc;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu ul{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.menu ul li a{
+    color: #000;
 }
 
 ul{
@@ -43,7 +59,7 @@ li{
     display: inline-block;
 }
 .search-bar{
-    width: 100%;
+    width: 80%;
 }
 
 .input-bar{
@@ -53,12 +69,12 @@ li{
     align-items: center;
     padding: 10px;
     width: 300px;
-    background-color: red;
+    
 }
 
 .favorite-links-showcase{
     display: flex;
-    background-color: blue;
+    background-color: #ccc;
 }
 
 .about-conteiner{
@@ -74,8 +90,12 @@ li{
 }
 
 footer{
-    
-    background-color: black;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ccc;
 }
 
 
@@ -111,7 +131,7 @@ footer{
     }
     .tutorial{
         display: grid;
-        background-color: aqua;
+        background-color: #ccc;
         padding: 26px;
         margin: 3px 5px ;
     }
