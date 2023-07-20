@@ -2,20 +2,35 @@ let ul = document.querySelector(".my-list");
 let form = document.querySelector(".form-insert-urls");
 const url = "http://localhost:3000/";
 
-console.log(ul);
 
-async function getAll() {
-  const response = await fetch(url, { method: "GET" });
-  const data = await response.json();
-  return data;
+
+if (form) {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    let formData = new FormData(form);
+    if (
+      formData.get("name") !== null ||
+      (formData.get("name") !== undefined && formData.get("url") !== null) ||
+      formData.get("url") !== undefined
+    ) {
+      let data = {
+        name: formData.get("name"),
+        url: formData.get("url"),
+      };
+
+      insert(data).catch((err) => console.error(err));
+      window.location.reload();
+    }
+  });
 }
 
-prepareDataForWriteInLiElement();
 
 async function prepareDataForWriteInLiElement() {
   let apiData = await getAll();
   writeDataInLiElementAndAppendLiInUl(apiData);
 }
+
+prepareDataForWriteInLiElement();
 
 function writeDataInLiElementAndAppendLiInUl(apiData) {
   for (let i = 0; i < apiData.length; i++) {
@@ -82,7 +97,6 @@ function addNameInputInForm(name) {
   let nameInput = document.createElement("input");
   nameInput.classList.add("input-name-editForm");
   nameInput.value = name;
-  console.log(nameInput);
   return nameInput;
 }
 
@@ -113,6 +127,13 @@ function generateIcon(iconName) {
   icon.classList.add(iconName[1]);
   return icon;
 }
+
+async function getAll() {
+  const response = await fetch(url, { method: "GET" });
+  const data = await response.json();
+  return data;
+}
+
 
 async function insert(data) {
   // Default options are marked with *
