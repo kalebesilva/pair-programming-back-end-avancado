@@ -22,7 +22,7 @@ function writeDataInLiElementAndAppendLiInUl(apiData) {
     let li = document.createElement("li");
     li.innerHTML = `${apiData[i].name} - ${apiData[i].url}`;
     li.appendChild(generateDeleteButtonForLi(li, apiData[i]));
-    li.appendChild(generateEditButtonFor(apiData[i]));
+    li.appendChild(generateEditButtonForLi(apiData[i],li));
     ul.appendChild(li);
   }
 }
@@ -43,43 +43,67 @@ function generateEventForButtonDelete(buttonDelete, apiData) {
   return buttonDelete;
 }
 
-function generateEditButtonFor(apiData) {
-  let editButton = document.createElement("button");
-  editButton.appendChild(generateIcon("fa-solid fa-pen-to-square"));
-  return editButton;//createEventListenerForForm(editButton,apiData);
+function generateEditButtonForLi(apiData, li) {
+  let buttonEdit = document.createElement("button");
+  buttonEdit.appendChild(generateIcon("fa-solid fa-pen-to-square"));
+  buttonEdit.addEventListener("click", (event) => {
+    // Create edit form
+    let formInEditButton = createEditForm(apiData);
+    li.innerHTML = "";
+    li.appendChild(formInEditButton);
+    formInEditButton.appendChild(saveButtonInEditForm(apiData));
+
+    // Add event listener to form
+    formInEditButton.addEventListener("submit", (event) => {
+      event.preventDefault();
+      let nameInput = formInEditButton.querySelector(".input-name-editForm");
+      let urlInput = formInEditButton.querySelector(".input-url-editForm");
+      let updatedData = {
+        name: nameInput.value,
+        url: urlInput.value,
+      };
+      useUpdadeFunction(updatedData, apiData._id);
+
+      // Remove edit form from HTML
+      window.location.reload();
+    });
+  });
+  return buttonEdit;
 }
 
-function createEventListenerForForm(editButton, apiData){
-  editButton.addEventListener("click", () => {
-    editButton.appendChild(generateFormForEditButton(apiData));
-    
-  })
-}
 
-function generateFormForEditButton(apiData) {
-  let editForm = document.createElement("form");
-  editForm.appendChild(addNameInputInForm(apiData.name));
-  editForm.appendChild(addUrlInForm(apiData.url));
-  editForm.appendChild(addSaveButtonInEditForm());
-  return editForm
+function createEditForm(apiData){
+      let editForm = document.createElement("form")
+      editForm.appendChild(addNameInputInForm(apiData.name));
+      editForm.appendChild(addUrlInForm(apiData.url));
+      return editForm;
 }
-
 function addNameInputInForm(name) {
   let nameInput = document.createElement("input");
+  nameInput.classList.add("input-name-editForm");
   nameInput.value = name;
+  console.log(nameInput);
   return nameInput;
 }
 
 function addUrlInForm(url) {
   let urlInput = document.createElement("input");
+  urlInput.classList.add("input-url-editForm")
   urlInput.value = url;
   return urlInput;
 }
 
-function addSaveButtonInEditForm() {
+function saveButtonInEditForm(apiData) {
   let saveButton = document.createElement("button");
   saveButton.appendChild(generateIcon("fa-solid fa-floppy-disk"));
+  saveButton.type = "submit";
   return saveButton;
+}
+
+
+
+async function useUpdadeFunction(apiData,id) {
+  await updateById(apiData,id);
 }
 
 function generateIcon(iconName) {
@@ -108,7 +132,8 @@ async function insert(data) {
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-async function updateById(data, id) {
+async function updateById(data,id) {
+  
   // Default options are marked with *
   const response = await fetch(url + id, {
     method: "PUT", // *GET, POST, PUT, DELETE, etc.
